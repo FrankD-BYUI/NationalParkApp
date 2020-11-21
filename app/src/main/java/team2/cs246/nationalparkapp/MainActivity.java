@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import team2.cs246.nationalparkapp.model.APITester;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

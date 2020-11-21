@@ -1,4 +1,4 @@
-package team2.cs246.nationalparkapp;
+package team2.cs246.nationalparkapp.model;
 
 import android.util.Log;
 
