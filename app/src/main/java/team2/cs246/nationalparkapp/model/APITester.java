@@ -23,5 +23,10 @@ public class APITester implements Runnable {
         parkList.forEach((park -> {
             Log.d(TAG, park.toString());
         }));
+
+        /*List<Park> parkList = API.getParksByState("dc");
+        parkList.forEach((park -> {
+            Log.d(TAG, park.toString());
+        }));*/
     }
 }

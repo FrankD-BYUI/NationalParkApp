@@ -98,4 +98,45 @@ public class API {
 
         return filteredList;
     }
+
+    /**
+     * Searches for parks in a given state.
+     * @param state either a 2 letter state code or state name (case insensitive)
+     * @return an ArrayList of Parks in the specified state
+     */
+    public static List<Park> getParksByState(String state) {
+        String url;
+        String urlState;
+        String response;
+        ParkWrapper parkWrapper;
+        Gson gson = new Gson();
+        List<Park> parkList;
+        String stateCode = StateHelper.getStateCode(state);
+
+        if (stateCode == null) {
+            Log.d(TAG, "null state code");
+            return null;
+        }
+
+        try {
+            urlState = URLEncoder.encode(stateCode, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, e.getMessage());
+            return null;
+        }
+
+        url = BASE_URL + "parks?q=" + urlState + "&api_key=" + API_KEY;
+        response = HTTPHelper.readHTTP(url);
+        //Log.d(TAG, response);
+
+        if (response != null) {
+            parkWrapper = gson.fromJson(response, ParkWrapper.class);
+            parkList = parkWrapper.getParks();
+        } else {
+            Log.d(TAG, "No API data received");
+            return null;
+        }
+
+        return parkList;
+    }
 }
