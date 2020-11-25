@@ -44,7 +44,7 @@ public class API {
     /**
      * Searches for the query term anywhere in the Park's data. Words separated by
      * a space are searched individually, put quotes around the words to search for
-     * them together (Exampel: grand canyon returns 48 results, "grand canyon" returns 3)
+     * them together (Example: grand canyon returns 48 results, "grand canyon" returns 3)
      *
      * @param query The string used to query the API
      * @return      A list of parks returned by the API

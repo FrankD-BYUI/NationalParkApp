@@ -9,4 +9,11 @@
     <string name="parkNameId">Park Id</string>
     <string name="parkResultIcon">Park Result Icon</string>
     <string name="title_activity_maps">Map</string>
+    <string name="park_description">Yellow Stone National Park was one of the first parks to be designated as a National Park</string>
+    <string name="park_name_label">Park Name</string>
+    <string name="park_full_name">YellowStone National Park</string>
+    <string name="park_description_label">Description</string>
+    <string name="park_title">YellowStone</string>
+    <string name="park_summary">Old Faithful</string>
+    <string name="fab_content_description">Star FAB</string>
 </resources>
