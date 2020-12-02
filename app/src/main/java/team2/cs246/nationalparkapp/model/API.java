@@ -81,16 +81,16 @@ public class API {
     /**
      * Simply calls getParksByQuery then filters the list to only parks that
      * have the search query in the full park name.
-     * @param query The string used to query the API
+     * @param name The string used to query the API
      * @return      A list of parks that contain the query in the full name
      */
-    public static List<Park> getParksByName(String query) {
-        List<Park> parkList = getParksByQuery(query);
+    public static List<Park> getParksByName(String name) {
+        List<Park> parkList = getParksByQuery(name);
         List<Park> filteredList = new ArrayList<Park>();
 
         if (parkList != null) {
             parkList.forEach((park) -> {
-                if (park.getFullName().contains(query)) {
+                if (park.getFullName().contains(name)) {
                     filteredList.add(park);
                 }
             });

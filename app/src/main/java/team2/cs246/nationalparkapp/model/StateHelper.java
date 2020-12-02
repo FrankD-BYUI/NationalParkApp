@@ -144,4 +144,17 @@ public class StateHelper {
             return null;
         }
     }
+
+    public static String getStateName(String stateCode) {
+        //If a state name is provided, return it
+        //If a state code is provided, return it's state name
+        //If anything other than a state or state code is provided, return null.
+        if (stateNameToCodeMap.containsKey(capitalizeFully(stateCode))) {
+            return stateNameToCodeMap.get(capitalizeFully(stateCode));
+        } else if (stateCodeToNameMap.containsKey(stateCode.toUpperCase())) {
+            return stateCode.toUpperCase();
+        } else {
+            return null;
+        }
+    }
 }

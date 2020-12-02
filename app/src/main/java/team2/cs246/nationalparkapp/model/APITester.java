@@ -16,17 +16,17 @@ public class APITester implements Runnable {
 
     @Override
     public void run() {
-        /*Park park = API.getParkByParkCode("acad");
-        Log.d(TAG, park.toString());*/
+        Park park = ParkRepository.loadParkByParkCode("acad");
+        Log.d(TAG, park.toString());
 
-        List<Park> parkList = API.getParksByName("Grand Canyon");
-        parkList.forEach((park -> {
-            Log.d(TAG, park.toString());
+        List<Park> parkList = ParkRepository.loadParksByName("Grand Canyon");
+        parkList.forEach((myPark -> {
+            Log.d(TAG, myPark.toString());
         }));
 
-        /*List<Park> parkList = API.getParksByState("dc");
-        parkList.forEach((park -> {
-            Log.d(TAG, park.toString());
-        }));*/
+        List<Park> parkList2 = API.getParksByState("dc");
+        parkList2.forEach((myPark -> {
+            Log.d(TAG, myPark.toString());
+        }));
     }
 }
