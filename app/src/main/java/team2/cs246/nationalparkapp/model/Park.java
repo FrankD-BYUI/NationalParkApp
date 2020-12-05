@@ -2,7 +2,6 @@ package team2.cs246.nationalparkapp.model;
 
 import java.util.List;
 
-//TODO: add getters to simplify access to member objects' data
 public class Park {
     private String name;
     private String fullName;
@@ -66,5 +65,13 @@ public class Park {
 
     public String getLatLong() {
         return latLong;
+    }
+
+    public ParkContacts getContacts() {
+        return contacts;
+    }
+
+    public List<ParkAddress> getAddresses() {
+        return addresses;
     }
 }
