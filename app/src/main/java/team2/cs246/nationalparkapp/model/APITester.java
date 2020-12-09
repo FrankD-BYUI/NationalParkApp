@@ -10,28 +10,32 @@ import java.lang.ref.WeakReference;
 public class APITester implements Runnable {
     private final String TAG = "APITester";
     private WeakReference<Activity> activityRef;
+    private boolean clearData;
 
-    public APITester(Activity activity) {
+    public APITester(Activity activity, boolean clearData) {
         this.activityRef = new WeakReference<Activity>(activity);
+        this.clearData = clearData;
     }
 
     @Override
     public void run() {
-        Park park = ParkRepository.loadParkByParkCode(this.activityRef, "acad");
-        Log.d(TAG, park.toString());
+        if (!clearData) {
+            Park park = ParkRepository.loadParkByParkCode(this.activityRef, "acad");
+            Log.d(TAG, park.toString());
 
-        /*List<Park> parkList = ParkRepository.searchParksByName(this.activityRef, "Grand Canyon");
-        parkList.forEach((myPark -> {
-            Log.d(TAG, myPark.toString());
-        }));*/
+            /*List<Park> parkList = ParkRepository.searchParksByName(this.activityRef, "Grand Canyon");
+            parkList.forEach((myPark -> {
+                Log.d(TAG, myPark.toString());
+            }));*/
 
-        /*List<Park> parkList2 = ParkRepository.searchParksByState(this.activityRef, "DC");
-        parkList2.forEach((myPark -> {
-            Log.d(TAG, myPark.toString());
-        }));
-*/
-        //clear out data
-        //clearSharedPreferences();
+            /*List<Park> parkList2 = ParkRepository.searchParksByState(this.activityRef, "DC");
+            parkList2.forEach((myPark -> {
+                Log.d(TAG, myPark.toString());
+            })); */
+        } else {
+            //clear out data
+            clearSharedPreferences();
+        }
     }
 
     private void clearSharedPreferences() {
@@ -45,4 +49,6 @@ public class APITester implements Runnable {
             editor.apply();
         }
     }
+
+
 }

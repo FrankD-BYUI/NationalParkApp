@@ -5,24 +5,31 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import team2.cs246.nationalparkapp.model.Park;
+import team2.cs246.nationalparkapp.model.ParkRepository;
 
 public class SearchParksActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
-    List<String> parksList;
+    List<Park> parksList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parks);
-        parksList = new ArrayList<>();
+
+        new Thread(new ParksSearcher(this, "")).start();
+/*        parksList = new ArrayList<>();
 
 
         parksList.add("Yosemite National Park");
@@ -44,16 +51,16 @@ public class SearchParksActivity extends AppCompatActivity {
         parksList.add("Pinnacles National Park");
         parksList.add("Petrified Forest National Park");
         parksList.add("Saguaro National Park");
-        parksList.add("Monument Valley National Park");
+        parksList.add("Monument Valley National Park");*/
 
 
-        recyclerView = findViewById(R.id.parkRecyclerView);
+        /*recyclerView = findViewById(R.id.parkRecyclerView);
         recyclerAdapter = new RecyclerAdapter(parksList);
 
         recyclerView.setAdapter(recyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.addItemDecoration(dividerItemDecoration);*/
     }
 
     @Override

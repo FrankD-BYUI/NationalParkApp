@@ -64,7 +64,12 @@ public class API {
             return null;
         }
 
-        url = BASE_URL + "parks?q=" + urlQuery + "&api_key=" + API_KEY;
+        url = BASE_URL + "parks?";
+        if (query != ""){
+            url += "q=" + urlQuery;
+        }
+        url += "&limit=10&api_key=" + API_KEY;
+
         response = HTTPHelper.readHTTP(url);
         //Log.d(TAG, response);
 

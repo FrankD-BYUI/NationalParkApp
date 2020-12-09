@@ -17,14 +17,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import team2.cs246.nationalparkapp.model.Park;
+
 public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkViewHolder> implements Filterable {
 
     private static final String TAG = "RecyclerAdapter";
 
-    List<String> parksList;
-    List<String> fullParksList;
+    List<Park> parksList;
+    List<Park> fullParksList;
 
-    public RecyclerAdapter(List<String> parksList) {
+    public RecyclerAdapter(List<Park> parksList) {
         this.parksList = parksList;
         this.fullParksList = new ArrayList<>(parksList);
     }
@@ -44,7 +46,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
     @Override
     public void onBindViewHolder(@NonNull ParkViewHolder holder, int position) {
         holder.rowCountTextView.setText(String.valueOf(position));
-        holder.parkNameTextView.setText(parksList.get(position));
+        holder.parkNameTextView.setText(parksList.get(position).getName());
     }
 
     @Override
@@ -67,13 +69,13 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
 
             if (constraint.toString().isEmpty())
             {
-                filteredParksList.addAll(fullParksList);
+                //filteredParksList.addAll(fullParksList);
             } else {
-                for (String park: fullParksList) {
+                /*for (String park: fullParksList) {
                     if (park.toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filteredParksList.add(park);
                     }
-                }
+                }*/
             }
 
             FilterResults filterResults = new FilterResults();
@@ -86,7 +88,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
         @Override
         protected void publishResults(CharSequence constraint, FilterResults filterResults) {
             parksList.clear();
-            parksList.addAll((Collection<? extends String>) filterResults.values);
+            parksList.addAll((Collection<? extends Park>) filterResults.values);
             notifyDataSetChanged();
         }
     };
@@ -116,7 +118,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), parksList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), parksList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
         }
     }
 }
