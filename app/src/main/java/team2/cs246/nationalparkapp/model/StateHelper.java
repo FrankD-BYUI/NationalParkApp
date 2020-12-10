@@ -157,4 +157,14 @@ public class StateHelper {
             return null;
         }
     }
+
+    public static Boolean isState(String state){
+        if (stateNameToCodeMap.containsKey(capitalizeFully(state))) {
+            return true;
+        } else if (stateCodeToNameMap.containsKey(state.toUpperCase())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

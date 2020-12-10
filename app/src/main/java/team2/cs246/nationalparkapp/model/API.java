@@ -10,10 +10,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
+
 public class API {
     private static String API_KEY = "KkwsP6yUTb9qxUieGKy0doP8lcju2oim8qVDvblf";
     private static String BASE_URL = "https://developer.nps.gov/api/v1/";
     private static String TAG = "API";
+    private static String LIMIT = "15";
 
     /**
      *
@@ -68,7 +71,7 @@ public class API {
         if (query != ""){
             url += "q=" + urlQuery;
         }
-        url += "&limit=10&api_key=" + API_KEY;
+        url += "&limit=" + LIMIT + "&api_key=" + API_KEY;
 
         response = HTTPHelper.readHTTP(url);
         //Log.d(TAG, response);
@@ -95,7 +98,7 @@ public class API {
 
         if (parkList != null) {
             parkList.forEach((park) -> {
-                if (park.getFullName().contains(name)) {
+                if (containsIgnoreCase(park.getFullName(), name)) {
                     filteredList.add(park);
                 }
             });
@@ -130,7 +133,7 @@ public class API {
             return null;
         }
 
-        url = BASE_URL + "parks?q=" + urlState + "&api_key=" + API_KEY;
+        url = BASE_URL + "parks?stateCode=" + urlState + "&api_key=" + API_KEY;
         response = HTTPHelper.readHTTP(url);
         //Log.d(TAG, response);
 

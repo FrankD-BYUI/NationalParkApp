@@ -27,16 +27,16 @@
         android:layout_marginStart="16dp"
         android:text="@string/parkNameViewResult"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/rowCountTextView"
+        app:layout_constraintBottom_toTopOf="@+id/parkLocationTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/rowCountTextView"
+        android:id="@+id/parkLocationTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/parkNameId"
+        android:text="address"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

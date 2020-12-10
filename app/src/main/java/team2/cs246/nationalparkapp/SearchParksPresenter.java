@@ -10,13 +10,14 @@ import java.util.List;
 
 import team2.cs246.nationalparkapp.model.Park;
 import team2.cs246.nationalparkapp.model.ParkRepository;
+import team2.cs246.nationalparkapp.model.StateHelper;
 
-public class ParksSearcher implements Runnable{
+public class SearchParksPresenter implements Runnable{
     private static final String TAG = "PullTemp";
     private WeakReference<Activity> activityRef;
     private String parkName;
 
-    public ParksSearcher(Activity activity, String parkName) {
+    public SearchParksPresenter(Activity activity, String parkName) {
         this.activityRef = new WeakReference<Activity>(activity);
         this.parkName = parkName;
     }
@@ -25,7 +26,11 @@ public class ParksSearcher implements Runnable{
     public void run() {
         List<Park> parksList;
 
-        parksList = ParkRepository.searchParksByName(this.activityRef, parkName);
+        if (StateHelper.isState(parkName)) {
+            parksList = ParkRepository.searchParksByState(this.activityRef, parkName);
+        } else {
+            parksList = ParkRepository.searchParksByName(this.activityRef, parkName);
+        }
 
         if (parksList != null) {
             final Activity activity = activityRef.get();
@@ -33,16 +38,10 @@ public class ParksSearcher implements Runnable{
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        RecyclerView recyclerView;
-                        RecyclerAdapter recyclerAdapter;
-
-                        recyclerView = activity.findViewById(R.id.parkRecyclerView);
-                        recyclerAdapter = new RecyclerAdapter(parksList);
+                        RecyclerView recyclerView = activity.findViewById(R.id.parkRecyclerView);
+                        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(parksList);
 
                         recyclerView.setAdapter(recyclerAdapter);
-
-                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
-                        recyclerView.addItemDecoration(dividerItemDecoration);
                     }
                 });
             }

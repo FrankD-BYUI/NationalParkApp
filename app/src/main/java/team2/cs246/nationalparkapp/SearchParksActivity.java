@@ -9,58 +9,28 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 
 import team2.cs246.nationalparkapp.model.Park;
-import team2.cs246.nationalparkapp.model.ParkRepository;
+import team2.cs246.nationalparkapp.model.StateHelper;
 
 public class SearchParksActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    RecyclerAdapter recyclerAdapter;
-    List<Park> parksList;
+    //RecyclerAdapter recyclerAdapter;
+    //List<Park> parksList;
+    Activity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parks);
 
-        new Thread(new ParksSearcher(this, "")).start();
-/*        parksList = new ArrayList<>();
-
-
-        parksList.add("Yosemite National Park");
-        parksList.add("Grand Canyon National Park");
-        parksList.add("Yellowstone National Park");
-        parksList.add("Devil's Rock National Park");
-        parksList.add("Mount Rainier National Park");
-        parksList.add("Mt. Rushmore National Park");
-        parksList.add("Arches National Park");
-        parksList.add("Zions National Park");
-        parksList.add("Bryce Canyon National Park");
-        parksList.add("Manhattan Project National Historical Park");
-        parksList.add("Canyonlands National Park");
-        parksList.add("Sequoia National Park");
-        parksList.add("Joshua Tree National Park");
-        parksList.add("Kings Canyon National Park");
-        parksList.add("Death Valley National Park");
-        parksList.add("Channel Island National Park");
-        parksList.add("Pinnacles National Park");
-        parksList.add("Petrified Forest National Park");
-        parksList.add("Saguaro National Park");
-        parksList.add("Monument Valley National Park");*/
-
-
-        /*recyclerView = findViewById(R.id.parkRecyclerView);
-        recyclerAdapter = new RecyclerAdapter(parksList);
-
-        recyclerView.setAdapter(recyclerAdapter);
+        new Thread(new SearchParksPresenter(this, "")).start();
+        recyclerView = findViewById(R.id.parkRecyclerView);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);*/
+        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -72,12 +42,13 @@ public class SearchParksActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                new Thread(new SearchParksPresenter(activity, query)).start();
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                recyclerAdapter.getFilter().filter(newText);
+                //recyclerAdapter.getFilter().filter(newText);
                 return false;
             }
         });

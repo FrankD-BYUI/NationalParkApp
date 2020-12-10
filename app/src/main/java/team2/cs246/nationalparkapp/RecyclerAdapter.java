@@ -8,7 +8,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +18,7 @@ import java.util.List;
 
 import team2.cs246.nationalparkapp.model.Park;
 
-public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkViewHolder> implements Filterable {
+public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkViewHolder> /*implements Filterable*/ {
 
     private static final String TAG = "RecyclerAdapter";
 
@@ -45,7 +44,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
 
     @Override
     public void onBindViewHolder(@NonNull ParkViewHolder holder, int position) {
-        holder.rowCountTextView.setText(String.valueOf(position));
+        holder.parkLocationTextView.setText(parksList.get(position).getCityState());
         holder.parkNameTextView.setText(parksList.get(position).getName());
     }
 
@@ -54,7 +53,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
         return parksList.size();
     }
 
-    @Override
+    /*@Override
     public Filter getFilter() {
         return filter;
     }
@@ -69,13 +68,13 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
 
             if (constraint.toString().isEmpty())
             {
-                //filteredParksList.addAll(fullParksList);
+                filteredParksList.addAll(fullParksList);
             } else {
-                /*for (String park: fullParksList) {
+                for (String park: fullParksList) {
                     if (park.toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filteredParksList.add(park);
                     }
-                }*/
+                }
             }
 
             FilterResults filterResults = new FilterResults();
@@ -91,19 +90,19 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
             parksList.addAll((Collection<? extends Park>) filterResults.values);
             notifyDataSetChanged();
         }
-    };
+    };*/
 
     class ParkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView imageView;
-        TextView parkNameTextView, rowCountTextView;
+        TextView parkNameTextView, parkLocationTextView;
 
         public ParkViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.imageView);
             parkNameTextView = itemView.findViewById(R.id.parkNameTextView);
-            rowCountTextView = itemView.findViewById(R.id.rowCountTextView);
+            parkLocationTextView = itemView.findViewById(R.id.parkLocationTextView);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(new View.OnLongClickListener() {

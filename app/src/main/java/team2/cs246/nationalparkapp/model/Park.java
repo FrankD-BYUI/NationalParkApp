@@ -1,5 +1,7 @@
 package team2.cs246.nationalparkapp.model;
 
+import android.util.Log;
+
 import java.util.List;
 
 public class Park {
@@ -73,5 +75,17 @@ public class Park {
 
     public List<ParkAddress> getAddresses() {
         return addresses;
+    }
+
+    public String getCityState() {
+        List<ParkAddress> addresses = getAddresses();
+
+        for (ParkAddress address : addresses)
+        {
+            if (address.getType().equals("Physical")) {
+                return address.getCity() + ", " + address.getStateCode();
+            }
+        }
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package team2.cs246.nationalparkapp.model;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -21,6 +22,8 @@ import java.util.List;
  * a single park.
  */
 public class ParkRepository {
+    private static String TAG = "ParkRepository";
+
     public static Park loadParkByParkCode(WeakReference<Activity> activity, String parkCode) {
         Gson gson = new Gson();
         Park park;
@@ -41,17 +44,20 @@ public class ParkRepository {
     public static List<Park> searchParksByName(WeakReference<Activity> activity, String name) {
         Gson gson = new Gson();
         List<Park> parkList;
+
         // Attempt to load saved data for this park
-        String savedData = FileHelper.loadData(activity, name);
+        String savedData = FileHelper.loadData(activity, name.toLowerCase());
 
         // if data was found, de-serialize it.
         // if nothing was found, get it from the NPS API and save it.
         if (savedData != null) {
             Type parkListType = new TypeToken<ArrayList<Park>>(){}.getType();
             parkList = gson.fromJson(savedData, parkListType);
+            Log.d(TAG, name.toLowerCase() + " was loaded. Length: " + String.valueOf(parkList.size()));
         } else {
+            Log.d(TAG, name.toLowerCase() + " was not loaded.");
             parkList = API.getParksByName(name);
-            FileHelper.saveData(activity, name, gson.toJson(parkList));
+            FileHelper.saveData(activity, name.toLowerCase(), gson.toJson(parkList));
         }
         return parkList;
     }
