@@ -2,9 +2,12 @@ package team2.cs246.nationalparkapp.model;
 
 import android.util.Log;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Park {
+public class Park implements Parcelable {
     private String name;
     private String fullName;
     private String parkCode;
@@ -14,8 +17,53 @@ public class Park {
     private ParkContacts contacts;
     private List<ParkAddress> addresses;
 
+    public Park(String name, String latLong) {
+        this.name = name;
+        this.latLong = latLong;
+    }
+
     private Boolean favorite = false; //indicates if park has been set as a favorite
     private Boolean visited = false; //indicates if park has been marked as visited
+
+    protected Park(Parcel in) {
+        name = in.readString();
+        fullName = in.readString();
+        parkCode = in.readString();
+        description = in.readString();
+        latLong = in.readString();
+        byte tmpFavorite = in.readByte();
+        favorite = tmpFavorite == 0 ? null : tmpFavorite == 1;
+        byte tmpVisited = in.readByte();
+        visited = tmpVisited == 0 ? null : tmpVisited == 1;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(fullName);
+        dest.writeString(parkCode);
+        dest.writeString(description);
+        dest.writeString(latLong);
+        dest.writeByte((byte) (favorite == null ? 0 : favorite ? 1 : 2));
+        dest.writeByte((byte) (visited == null ? 0 : visited ? 1 : 2));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Park> CREATOR = new Creator<Park>() {
+        @Override
+        public Park createFromParcel(Parcel in) {
+            return new Park(in);
+        }
+
+        @Override
+        public Park[] newArray(int size) {
+            return new Park[size];
+        }
+    };
 
     public void setFavorite(Boolean favorite) {
         this.favorite = favorite;

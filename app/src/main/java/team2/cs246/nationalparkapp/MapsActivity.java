@@ -14,11 +14,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private double latDouble;
+    private double longDouble;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        latDouble = getIntent().getDoubleExtra("LAT", 0);
+        longDouble = getIntent().getDoubleExtra("LONG", 0);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -39,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng mtRushmore = new LatLng(43.8791, -103.4591);
+        LatLng mtRushmore = new LatLng(latDouble, longDouble);
         mMap.addMarker(new MarkerOptions().position(mtRushmore).title("Mount Rushmore"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(mtRushmore));
     }

@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Button"
+        android:text="MAP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -48,26 +48,14 @@
         app:layout_constraintEnd_toStartOf="@+id/mapLookup" />
 
     <TextView
-        android:id="@+id/parkNameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/park_name_label"
-        app:layout_constraintBaseline_toBaselineOf="@+id/parkName"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
         android:id="@+id/parkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
         android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:text="@string/park_full_name"
         app:layout_constraintBottom_toTopOf="@+id/parkDescriptionText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/parkNameLabel"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/favorite"
         app:layout_constraintVertical_bias="0.20" />
 
@@ -82,21 +70,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/parkDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/park_description_label"
-        app:layout_constraintBaseline_toBaselineOf="@+id/parkDescriptionText"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
         android:id="@+id/parkDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="117dp"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:text="@string/park_summary"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +114,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="parkNameLabel,parkDescription"
         tools:layout_editor_absoluteX="411dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

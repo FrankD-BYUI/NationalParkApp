@@ -24,6 +24,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
 
     List<Park> parksList;
     List<Park> fullParksList;
+    private ItemClickListener listener;
 
     public RecyclerAdapter(List<Park> parksList) {
         this.parksList = parksList;
@@ -117,7 +118,17 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
 
         @Override
         public void onClick(View view) {
-            //Toast.makeText(view.getContext(), parksList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            if(listener != null){
+                listener.onItemClick(view, getAdapterPosition());
+            }
         }
+    }
+
+    public void setListener(ItemClickListener listener){
+        this.listener = listener;
+    }
+
+    public interface ItemClickListener{
+        void onItemClick(View view, int position);
     }
 }

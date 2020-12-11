@@ -3,34 +3,45 @@ package team2.cs246.nationalparkapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import team2.cs246.nationalparkapp.model.Park;
+import team2.cs246.nationalparkapp.model.ParkRepository;
 import team2.cs246.nationalparkapp.model.StateHelper;
 
-public class SearchParksActivity extends AppCompatActivity {
+public class SearchParksActivity extends AppCompatActivity implements RecyclerAdapter.ItemClickListener {
     RecyclerView recyclerView;
-    //RecyclerAdapter recyclerAdapter;
-    //List<Park> parksList;
-    Activity activity = this;
+    RecyclerAdapter recyclerAdapter;
+    List<Park> parksListOG;
+    List<Park> parksList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parks);
 
-        new Thread(new SearchParksPresenter(this, "")).start();
-        recyclerView = findViewById(R.id.parkRecyclerView);
+        WeakReference<Activity> weak = new WeakReference<>(this);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        parksListOG = ParkRepository.searchParksByName(weak, "");
+        parksList = ParkRepository.searchParksByName(weak, "");
+
+        recyclerView = findViewById(R.id.parkRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerAdapter = new RecyclerAdapter(parksList);
+        recyclerAdapter.setListener(this);
+        recyclerView.setAdapter(recyclerAdapter);
+
     }
 
     @Override
@@ -42,18 +53,41 @@ public class SearchParksActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                new Thread(new SearchParksPresenter(activity, query)).start();
+
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //recyclerAdapter.getFilter().filter(newText);
+                search(newText);
                 return false;
             }
         });
 
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void search(String text){
+        parksList.clear();
+        text = text.toLowerCase();
+        for(Park park : parksListOG){
+            if(park.getFullName().toLowerCase().contains(text) || park.getCityState().toLowerCase().contains(text))
+                parksList.add(park);
+        }
+        recyclerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Park selectedPark = parksList.get(position);
+
+        Intent intent = new Intent(this, ParkDetail.class);
+        intent.putExtra("FNAME", selectedPark.getFullName());
+        intent.putExtra("NAME", selectedPark.getName());
+        intent.putExtra("DESC", selectedPark.getDescription());
+        intent.putExtra("LATLONG", selectedPark.getLatLong());
+
+        startActivity(intent);
     }
 }
