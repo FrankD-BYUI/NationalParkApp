@@ -87,7 +87,7 @@ public class SearchParksActivity extends AppCompatActivity implements RecyclerAd
         intent.putExtra("NAME", selectedPark.getName());
         intent.putExtra("DESC", selectedPark.getDescription());
         intent.putExtra("LATLONG", selectedPark.getLatLong());
-
+        //intent.putExtra("HEADER", selectedPark.getImages());
         startActivity(intent);
     }
 }
