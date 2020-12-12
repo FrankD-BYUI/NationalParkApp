@@ -21,11 +21,19 @@ public class SearchParksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parks);
 
+
+
+
         Intent intent = getIntent();
         this.query = intent.getStringExtra(DashboardActivity.EXTRA_QUERY);
 
+        if (this.query != null){
         new Thread(new SearchParksPresenter(this, this.query)).start();
-
+        }
+        else
+        {
+            new Thread(new SearchParksPresenter(this, "")).start();
+        }
         recyclerView = findViewById(R.id.parkRecyclerView);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);

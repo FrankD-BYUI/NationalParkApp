@@ -1,5 +1,7 @@
 package team2.cs246.nationalparkapp.model;
 
+import com.google.android.gms.common.util.Strings;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -174,6 +176,11 @@ public class StateHelper {
      * @return      weather or not the state is a state
      */
     public static Boolean isState(String state){
+
+        /*if (Strings.isEmptyOrWhitespace(state)) {
+            return false;
+        } */
+
         if (stateNameToCodeMap.containsKey(capitalizeFully(state))) {
             return true;
         } else if (stateCodeToNameMap.containsKey(state.toUpperCase())) {
