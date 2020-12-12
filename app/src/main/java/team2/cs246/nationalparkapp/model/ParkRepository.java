@@ -82,31 +82,55 @@ public class ParkRepository {
         return parkList;
     }
 
-    /*private static List<Park> searchParks(WeakReference<Activity> activity, String query) {
+    public static List<Park> loadFavorites(WeakReference<Activity> activity) {
         Gson gson = new Gson();
-        List<Park> parkList;
-        // Attempt to load saved data for this park
-        String savedData = FileHelper.loadData(activity, query);
+        List<Park> favorites;
 
-        // if data was found, de-serialize it.
-        // if nothing was found, get it from the NPS API and save it.
+        // Attempt to load favorite parks
+        String savedData = FileHelper.loadData(activity, "favorites");
+
+        // if favorites was found, de-serialize it.
+        // if nothing was found, create a new ArrayList<Park> and return it.
         if (savedData != null) {
             Type parkListType = new TypeToken<ArrayList<Park>>(){}.getType();
-            parkList = gson.fromJson(savedData, parkListType);
+            favorites = gson.fromJson(savedData, parkListType);
+            Log.d(TAG, "favorites was loaded. Length: " + String.valueOf(favorites.size()));
         } else {
-            parkList = API.getParksByName(query);
-            FileHelper.saveData(activity, query, gson.toJson(parkList));
+            Log.d(TAG, "favorites was not found. Empty list returned.");
+            favorites = new ArrayList<Park>();
         }
-        return parkList;
-    }*/
-
-    //TODO: Implement favorites
-    public static List<Park> loadFavorites() {
-        return null;
+        return favorites;
     }
 
-    //TODO: Implement favorites
-    public static boolean saveFavorites(List<Park> parkList) {
-        return false;
+    public static void saveFavorites(WeakReference<Activity> activity, List<Park> favorites) {
+        Gson gson = new Gson();
+        Log.d(TAG, "Attempting to save favorites.");
+        FileHelper.saveData(activity, "favorites", gson.toJson(favorites));
+    }
+
+    public static List<Park> loadVisited(WeakReference<Activity> activity) {
+        Gson gson = new Gson();
+        List<Park> visited;
+
+        // Attempt to load visited parks
+        String savedData = FileHelper.loadData(activity, "visited");
+
+        // if visited was found, de-serialize it.
+        // if nothing was found, create a new ArrayList<Park> and return it.
+        if (savedData != null) {
+            Type parkListType = new TypeToken<ArrayList<Park>>(){}.getType();
+            visited = gson.fromJson(savedData, parkListType);
+            Log.d(TAG, "visited was loaded. Length: " + String.valueOf(visited.size()));
+        } else {
+            Log.d(TAG, "visited was not found. Empty list returned.");
+            visited = new ArrayList<Park>();
+        }
+        return visited;
+    }
+
+    public static void saveVisited(WeakReference<Activity> activity, List<Park> favorites) {
+        Gson gson = new Gson();
+        Log.d(TAG, "Attempting to save visited.");
+        FileHelper.saveData(activity, "visited", gson.toJson(favorites));
     }
 }
