@@ -38,13 +38,24 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/goToSearchAdapterBtn"
+        android:id="@+id/dashboardbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="openSearchAdapter"
-        android:text="Go to SearchAdapter"
+        android:onClick="openDashboard"
+        android:text="Go to Dashboard"
+        app:layout_constraintBottom_toTopOf="@+id/favesVisitedBtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/favesVisitedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="populateFavsVisit"
+        android:text="Populate Faves and Visited"
         app:layout_constraintBottom_toTopOf="@+id/clearDataBtn"
         app:layout_constraintStart_toStartOf="parent" />
 

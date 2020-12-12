@@ -46,7 +46,7 @@ public class ParkRepository {
         List<Park> parkList;
 
         // Attempt to load saved data for this park
-        String savedData = FileHelper.loadData(activity, name.toLowerCase());
+        String savedData = FileHelper.loadData(activity, name.replaceAll(" ", "_").toLowerCase());
 
         // if data was found, de-serialize it.
         // if nothing was found, get it from the NPS API and save it.
@@ -57,7 +57,7 @@ public class ParkRepository {
         } else {
             Log.d(TAG, name.toLowerCase() + " was not loaded.");
             parkList = API.getParksByName(name);
-            FileHelper.saveData(activity, name.toLowerCase(), gson.toJson(parkList));
+            FileHelper.saveData(activity, name.replaceAll(" ", "_").toLowerCase(), gson.toJson(parkList));
         }
         return parkList;
     }

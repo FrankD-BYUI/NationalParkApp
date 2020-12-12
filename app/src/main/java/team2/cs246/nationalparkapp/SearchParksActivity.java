@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,13 +14,17 @@ import android.view.MenuItem;
 public class SearchParksActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Activity activity = this;
+    private String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parks);
 
-        new Thread(new SearchParksPresenter(this, "")).start();
+        Intent intent = getIntent();
+        this.query = intent.getStringExtra(DashboardActivity.EXTRA_QUERY);
+
+        new Thread(new SearchParksPresenter(this, this.query)).start();
 
         recyclerView = findViewById(R.id.parkRecyclerView);
 
@@ -46,7 +51,6 @@ public class SearchParksActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
         return super.onCreateOptionsMenu(menu);
     }

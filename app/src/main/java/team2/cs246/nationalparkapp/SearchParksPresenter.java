@@ -12,7 +12,7 @@ import team2.cs246.nationalparkapp.model.ParkRepository;
 import team2.cs246.nationalparkapp.model.StateHelper;
 
 public class SearchParksPresenter implements Runnable {
-    private static final String TAG = "PullParks";
+    private static final String TAG = "SearchParksPresenter";
     private WeakReference<Activity> activityRef;
     private String parkName;
     RecyclerAdapter recyclerAdapter;

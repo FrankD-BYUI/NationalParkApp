@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">NationalParkApp</string>
-    <string name="title_activity_search_parks">SearchParksActivity</string>
+    <string name="app_name">National Park App</string>
+    <string name="title_activity_search_parks">Search Parks</string>
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -16,4 +16,9 @@
     <string name="park_title">YellowStone</string>
     <string name="park_summary">Old Faithful</string>
     <string name="fab_content_description">Star FAB</string>
+    <string name="hello_text">Hello Explorer!</string>
+    <string name="no_favorites">It looks like you haven\'t set any favorites yet. Search for a park, then mark it as a favorite.</string>
+    <string name="no_visited">It looks like you haven\'t visited any parks yet. Search for a park, then mark it as visited.</string>
+    <string name="load_favorites">Loading Favorites...</string>
+    <string name="load_visited">Loading Visited Parks...</string>
 </resources>
