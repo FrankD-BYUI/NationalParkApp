@@ -24,7 +24,6 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
     List<Park> fullParksList;
     private final Context mContext;
     private final LayoutInflater mLayoutInflator;
-    //private ItemClickListener listener;
 
     public RecyclerAdapter(List<Park> parksList, Context mContext) {
         this.parksList = parksList;
@@ -38,7 +37,6 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
     public ParkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //Log.i(TAG, "onCreateViewHolder: " + count++);
-        //mLayoutInflator = LayoutInflater.from(parent.getContext());
         View view = mLayoutInflator.inflate(R.layout.row_item, parent, false);
         ParkViewHolder parkViewHolder = new ParkViewHolder(view);
 
@@ -80,6 +78,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
                     intent.putExtra("NAME", selectedPark.getName());
                     intent.putExtra("DESC", selectedPark.getDescription());
                     intent.putExtra("LATLONG", selectedPark.getLatLong());
+                    intent.putExtra("PARKDESIGNATION", selectedPark.getDesignation());
                     //intent.putExtra("HEADER", selectedPark.getImages());
                     mContext.startActivity(intent);
                 }

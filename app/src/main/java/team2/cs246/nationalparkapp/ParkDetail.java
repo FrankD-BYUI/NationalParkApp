@@ -14,6 +14,7 @@ public class ParkDetail extends AppCompatActivity {
     TextView parkTitle;
     TextView parkName;
     TextView description;
+    TextView parkDesignation;
     Button mapLookup;
     //ImageView header;
 
@@ -26,10 +27,11 @@ public class ParkDetail extends AppCompatActivity {
         String parkNameText = getIntent().getStringExtra("FNAME");
         String descriptionText = getIntent().getStringExtra("DESC");
         String latLongText = getIntent().getStringExtra("LATLONG");
+        String parkDesignationText = getIntent().getStringExtra("PARKDESIGNATION");
 
 
-        String latText = latLongText.substring(latLongText.indexOf(":")+1,latLongText.indexOf(","));
-        String longText = latLongText.substring(latLongText.lastIndexOf(":")+1);
+        String latText = latLongText.length() > 0 ? latLongText.substring(latLongText.indexOf(":")+1,latLongText.indexOf(",")) : "0.0";
+        String longText = latLongText.length() > 0 ? latLongText.substring(latLongText.lastIndexOf(":")+1) : "0.0";
 
         double latDouble = Double.parseDouble(latText);
         double longDouble = Double.parseDouble(longText);
@@ -37,11 +39,13 @@ public class ParkDetail extends AppCompatActivity {
         parkTitle = findViewById(R.id.parkTitle);
         parkName = findViewById(R.id.parkName);
         description = findViewById(R.id.description);
+        parkDesignation = findViewById(R.id.parkDesignation);
         mapLookup = findViewById(R.id.mapLookup);
 
         parkTitle.setText(parkTitleText);
         parkName.setText(parkNameText);
         description.setText(descriptionText);
+        parkDesignation.setText(parkDesignationText);
 
         mapLookup.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,73 +32,116 @@
         android:id="@+id/mapLookup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="157dp"
-        android:layout_marginBottom="32dp"
-        android:text="MAP"
-        app:icon="@drawable/ic_info"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/mapButtonLabel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/visited"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/btnVisitedLabel"
+        app:layout_constraintBaseline_toBaselineOf="@+id/mapLookup"
+        app:layout_constraintEnd_toStartOf="@+id/mapLookup" />
 
     <TextView
+        android:id="@+id/parkNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/park_name_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/parkName"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
         android:id="@+id/parkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:text="@string/park_full_name"
-        android:textAlignment="textEnd"
-        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/parkDesignation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.871"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toEndOf="@+id/parkNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/favorite"
+        app:layout_constraintVertical_bias="0.20" />
 
     <TextView
         android:id="@+id/parkTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/alike_angular"
         android:text="@string/park_title"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/parkName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/parkDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/park_description_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/parkDesignation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/parkDesignation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="96dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/park_summary"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/parkDescription"
+        app:layout_constraintTop_toBottomOf="@+id/parkName" />
+
+    <ImageView
+        android:id="@+id/favorite"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/fab_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19"
+        app:srcCompat="@drawable/ic_star"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:ellipsize="end"
         android:fadingEdge="vertical"
-        android:fontFamily="@font/adamina"
         android:text="@string/park_description"
-        android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/mapLookup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parkName"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/parkDesignation" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
+        app:constraint_referenced_ids="parkNameLabel,parkDescription"
         tools:layout_editor_absoluteX="411dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

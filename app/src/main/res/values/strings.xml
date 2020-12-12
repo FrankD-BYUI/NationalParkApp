@@ -16,4 +16,6 @@
     <string name="park_title">YellowStone</string>
     <string name="park_summary">Old Faithful</string>
     <string name="fab_content_description">Star FAB</string>
+    <string name="mapButtonLabel">MAP</string>
+    <string name="btnVisitedLabel">Visited</string>
 </resources>

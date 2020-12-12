@@ -13,9 +13,11 @@ public class Park implements Parcelable {
     private String parkCode;
     private String description;
     private String latLong;
+    private String designation;
     private List<ParkImage> images;
     private ParkContacts contacts;
     private List<ParkAddress> addresses;
+
 
     public Park(String name, String latLong) {
         this.name = name;
@@ -31,6 +33,7 @@ public class Park implements Parcelable {
         parkCode = in.readString();
         description = in.readString();
         latLong = in.readString();
+        designation = in.readString();
         byte tmpFavorite = in.readByte();
         favorite = tmpFavorite == 0 ? null : tmpFavorite == 1;
         byte tmpVisited = in.readByte();
@@ -44,6 +47,7 @@ public class Park implements Parcelable {
         dest.writeString(parkCode);
         dest.writeString(description);
         dest.writeString(latLong);
+        dest.writeString(designation);
         dest.writeByte((byte) (favorite == null ? 0 : favorite ? 1 : 2));
         dest.writeByte((byte) (visited == null ? 0 : visited ? 1 : 2));
     }
@@ -111,6 +115,9 @@ public class Park implements Parcelable {
 
     public String getDescription() {
         return description;
+    }
+    public String getDesignation() {
+        return designation;
     }
 
     public String getLatLong() {
