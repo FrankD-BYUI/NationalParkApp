@@ -27,6 +27,7 @@ public class ParkDetail extends AppCompatActivity {
         String descriptionText = getIntent().getStringExtra("DESC");
         String latLongText = getIntent().getStringExtra("LATLONG");
 
+
         String latText = latLongText.substring(latLongText.indexOf(":")+1,latLongText.indexOf(","));
         String longText = latLongText.substring(latLongText.lastIndexOf(":")+1);
 
