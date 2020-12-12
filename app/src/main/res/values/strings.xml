@@ -21,4 +21,6 @@
     <string name="no_visited">It looks like you haven\'t visited any parks yet. Search for a park, then mark it as visited.</string>
     <string name="load_favorites">Loading Favorites...</string>
     <string name="load_visited">Loading Visited Parks...</string>
+    <string name="mapButtonLabel">MAP</string>
+    <string name="btnVisitedLabel">Visited</string>
 </resources>
