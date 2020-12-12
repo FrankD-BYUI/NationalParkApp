@@ -3,7 +3,8 @@ package team2.cs246.nationalparkapp.model;
 import java.util.List;
 
 /**
- * This class represents the data that is returned
+ * This class exists to hold the returned by the API so it can
+ * be serialized.
  */
 public class ParkWrapper {
     private int total;

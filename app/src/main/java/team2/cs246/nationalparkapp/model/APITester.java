@@ -9,6 +9,11 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This was made purely for testing purposes, it's bad and there is almost certainly a better
+ * way to do everything I did here. I will not comment the rest of this class because it
+ * doesn't deserve that honor.
+ */
 public class APITester implements Runnable {
     private final String TAG = "APITester";
     private WeakReference<Activity> activityRef;

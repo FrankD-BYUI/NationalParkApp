@@ -132,6 +132,11 @@ public class StateHelper {
         stateNameToCodeMap.put("Armed Forces Pacific","AP");
     }
 
+    /**
+     * takes in a state name, turns it into a state code
+     * @param state the name of a US state
+     * @return      the official 2 letter state code for that state
+     */
     public static String getStateCode(String state) {
         //If a state code is provided, return it
         //If a state is provided, return it's state code
@@ -145,6 +150,11 @@ public class StateHelper {
         }
     }
 
+    /**
+     * takes a state code, turns it into a state name
+     * @param stateCode an official 2 letter state code
+     * @return          the full name of the state
+     */
     public static String getStateName(String stateCode) {
         //If a state name is provided, return it
         //If a state code is provided, return it's state name
@@ -158,6 +168,11 @@ public class StateHelper {
         }
     }
 
+    /**
+     * checks to see if a given string is a state name or state code
+     * @param state the string that will be checked for statehood
+     * @return      weather or not the state is a state
+     */
     public static Boolean isState(String state){
         if (stateNameToCodeMap.containsKey(capitalizeFully(state))) {
             return true;

@@ -1,5 +1,9 @@
 package team2.cs246.nationalparkapp.model;
 
+/**
+ * This class primarily exists for serializing address data from the JSON
+ * string returned by the NPS API.
+ */
 public class ParkAddress {
     private String postalCode;
     private String city;

@@ -7,6 +7,9 @@ import android.os.Parcelable;
 
 import java.util.List;
 
+/**
+ * This class represents a Park, as returned by the NPS API
+ */
 public class Park implements Parcelable {
     private String name;
     private String fullName;
@@ -14,6 +17,7 @@ public class Park implements Parcelable {
     private String description;
     private String latLong;
     private String designation;
+    private String states;
     private List<ParkImage> images;
     private ParkContacts contacts;
     private List<ParkAddress> addresses;
@@ -89,6 +93,10 @@ public class Park implements Parcelable {
         return visited;
     }
 
+    /**
+     * basic toString functionality for testing purposes
+     * @return  a basic string representation of the Park
+     */
     @Override
     public String toString() {
         return "Park{" +
@@ -116,6 +124,7 @@ public class Park implements Parcelable {
     public String getDescription() {
         return description;
     }
+
     public String getDesignation() {
         return designation;
     }
@@ -132,6 +141,9 @@ public class Park implements Parcelable {
         return addresses;
     }
 
+    /**
+     * @return  the city and state of the park in the format [city], [state code]
+     */
     public String getCityState() {
         List<ParkAddress> addresses = getAddresses();
 
@@ -142,5 +154,9 @@ public class Park implements Parcelable {
             }
         }
         return null;
+    }
+
+    public String getStates() {
+        return states;
     }
 }
