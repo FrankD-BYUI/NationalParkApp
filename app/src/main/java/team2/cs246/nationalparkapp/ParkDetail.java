@@ -87,11 +87,17 @@ public class ParkDetail extends AppCompatActivity {
     }
 
     public void visitedPark(String parkCode, View view){
-        /*parkDetailActivityRef = new WeakReference<Activity>(activity);
-        currentPark = ParkRepository.loadParkByParkCode(parkDetailActivityRef, parkCode);
-        List<Park> visited = new ArrayList<Park>();
-        visited.add(currentPark);
-        ParkRepository.saveVisited(parkDetailActivityRef, visited); */
+        parkDetailActivityRef = new WeakReference<Activity>(activity);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                currentPark = ParkRepository.loadParkByParkCode(parkDetailActivityRef, parkCode);
+                List<Park> visited = ParkRepository.loadVisited(parkDetailActivityRef);
+                visited.add(currentPark);
+                ParkRepository.saveVisited(parkDetailActivityRef, visited);
+            }
+        }).start();
     }
 
 
