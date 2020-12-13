@@ -38,6 +38,14 @@ public class DashboardActivity extends AppCompatActivity {
         new Thread(new DashboardPresenter(this)).start();
     }
 
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        new Thread(new DashboardPresenter(this)).start();
+    }*/
+
+
+
     /**
      * Allows a call to SearchParksActivity to filter
      * by full park name or State.

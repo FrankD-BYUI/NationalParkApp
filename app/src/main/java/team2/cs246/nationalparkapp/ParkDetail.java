@@ -7,13 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+
 import java.lang.ref.WeakReference;
 import android.widget.TextView;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import team2.cs246.nationalparkapp.model.Park;
 import team2.cs246.nationalparkapp.model.ParkRepository;
@@ -27,6 +26,7 @@ public class ParkDetail extends AppCompatActivity {
     TextView parkDesignation;
     Button mapLookup;
     Button visited;
+    Button favorite;
     Park currentPark;
     WeakReference<Activity> parkDetailActivityRef;
 
@@ -58,6 +58,7 @@ public class ParkDetail extends AppCompatActivity {
         parkDesignation = findViewById(R.id.parkDesignation);
         mapLookup = findViewById(R.id.mapLookup);
         visited = findViewById(R.id.visited);
+        favorite = findViewById(R.id.addToFavBtn);
 
         parkTitle.setText(parkTitleText);
         parkName.setText(parkNameText);
@@ -79,6 +80,21 @@ public class ParkDetail extends AppCompatActivity {
                 visitedPark(parkCodeText, view);
             }
         });
+
+        favorite.setOnClickListener(new View.OnClickListener()   {
+            @Override
+            public void onClick(View view) {
+                if (!parkCodeText.isEmpty())
+                    addToFavoriteParks(parkCodeText, view);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     // Adds intents to pass to the maps activity for displaying the maps correctly
@@ -98,11 +114,39 @@ public class ParkDetail extends AppCompatActivity {
             public void run() {
                 currentPark = ParkRepository.loadParkByParkCode(parkDetailActivityRef, parkCode);
                 List<Park> visited = ParkRepository.loadVisited(parkDetailActivityRef);
-                visited.add(currentPark);
+                addParkToList(visited, currentPark);
                 ParkRepository.saveVisited(parkDetailActivityRef, visited);
             }
         }).start();
     }
 
+    public void addToFavoriteParks(String parkCode, View view){
+        parkDetailActivityRef = new WeakReference<Activity>(activity);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                currentPark = ParkRepository.loadParkByParkCode(parkDetailActivityRef, parkCode);
+                List<Park> favorites = ParkRepository.loadFavorites(parkDetailActivityRef);
+                addParkToList(favorites, currentPark);
+                ParkRepository.saveFavorites(parkDetailActivityRef, favorites);
+            }
+        }).start();
+    }
+
+    private List<Park> addParkToList(List<Park> parkList, Park addPark) {
+        AtomicBoolean duplicate = new AtomicBoolean(false);
+        String addParkCode = addPark.getParkCode();
+
+        parkList.forEach((park) -> {
+            if (park.getParkCode().equals(addParkCode)) {
+                duplicate.set(true);
+            }
+        });
+
+        if (!duplicate.get()){
+            parkList.add(addPark);
+        }
+        return parkList;
+    }
 }

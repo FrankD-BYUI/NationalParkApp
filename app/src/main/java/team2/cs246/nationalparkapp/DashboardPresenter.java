@@ -36,6 +36,9 @@ public class DashboardPresenter implements Runnable{
                     TextView loadFavorites = (TextView) activity.findViewById(R.id.loadFavsTv);
                     TextView loadVisited = (TextView) activity.findViewById(R.id.loadVisitedTv);
 
+                    /*loadFavorites.setVisibility(View.VISIBLE);
+                    loadVisited.setVisibility(View.VISIBLE);*/
+
                     if (favorites.size() == 0) {
                         TextView noFavorites = (TextView) activity.findViewById(R.id.noFavsTv);
                         loadFavorites.setVisibility(View.GONE);
