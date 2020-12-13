@@ -97,7 +97,7 @@ public class ParkDetail extends AppCompatActivity {
         finish();
     }
 
-    // Adds intents to pass to the maps activity for displaying the maps correctly
+    // Adds intents and intent extras to pass to the maps activity for displaying the maps correctly
     public void goToMap(double latDouble, double longDouble, String parkTitle){
         Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("LAT", latDouble);

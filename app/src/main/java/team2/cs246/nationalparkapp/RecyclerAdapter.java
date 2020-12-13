@@ -16,6 +16,10 @@ import java.util.List;
 
 import team2.cs246.nationalparkapp.model.Park;
 
+/**
+ * This class allows for interacting with RecyclerAdapters in the Activity classes.
+ * Allows you to set context of what called it and pass intents back to the caller.
+ */
 public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkViewHolder> /*implements Filterable*/ {
 
     private static final String TAG = "RecyclerAdapter";
@@ -55,6 +59,11 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
         return parksList.size();
     }
 
+    /**
+     * This class is for creating the ViewHolder needed by the recycler adapter.
+     * Allows onClick method from SearchActivity
+     * to pass intent to ParkDetails to display information.
+     */
     class ParkViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;

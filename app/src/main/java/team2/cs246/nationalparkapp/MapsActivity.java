@@ -19,6 +19,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double longDouble;
     private String locName;
 
+    // Get the intent passed from ParkDetails. Store them in variables.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
