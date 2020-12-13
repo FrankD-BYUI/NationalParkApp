@@ -11,6 +11,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Allows a call to SearchParksActivity to filter
+ * by full park name or State.
+ * Uses a recycler adapter to update with latest results from API searches
+ */
 public class SearchParksActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Activity activity = this;
@@ -45,6 +50,8 @@ public class SearchParksActivity extends AppCompatActivity {
 
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // Only do search after a submit so we don't have to make extra
+            // API calls and get interim results
             @Override
             public boolean onQueryTextSubmit(String query) {
                 new Thread(new SearchParksPresenter(activity, query)).start();

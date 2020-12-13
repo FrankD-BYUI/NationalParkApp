@@ -11,6 +11,12 @@ import team2.cs246.nationalparkapp.model.Park;
 import team2.cs246.nationalparkapp.model.ParkRepository;
 import team2.cs246.nationalparkapp.model.StateHelper;
 
+/**
+ * Allows background thread SearchParksActivity actions
+ * by park name or State.
+ * implements Runnable to be able to have backgorun threads run
+ * Updates the RecyclerAdapter when data is updated
+ */
 public class SearchParksPresenter implements Runnable {
     private static final String TAG = "SearchParksPresenter";
     private WeakReference<Activity> activityRef;
