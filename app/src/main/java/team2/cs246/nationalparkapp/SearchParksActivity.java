@@ -21,9 +21,6 @@ public class SearchParksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parks);
 
-
-
-
         Intent intent = getIntent();
         this.query = intent.getStringExtra(DashboardActivity.EXTRA_QUERY);
 

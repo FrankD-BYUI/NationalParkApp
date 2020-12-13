@@ -26,7 +26,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_editor_absoluteX="0dp"
         app:layout_editor_absoluteY="0dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:srcCompat="@drawable/grand_canyon"
+         />
 
     <Button
         android:id="@+id/mapLookup"
@@ -56,7 +57,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/parkName"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/parkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,7 +92,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/parkDesignation"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/parkDesignation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

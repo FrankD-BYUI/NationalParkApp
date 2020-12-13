@@ -13,7 +13,7 @@ import team2.cs246.nationalparkapp.model.Park;
 import team2.cs246.nationalparkapp.model.ParkRepository;
 
 public class DashboardPresenter implements Runnable{
-    private static final String TAG = "SearchParksPresenter";
+    private static final String TAG = "DashboardPresenter";
     private WeakReference<Activity> activityRef;
     private RecyclerView favorites;
     private RecyclerView visited;

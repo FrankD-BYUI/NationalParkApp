@@ -11,10 +11,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Main app activity which allows a user to do
+ * a search query on the park name or state.
+ */
 public class DashboardActivity extends AppCompatActivity {
     RecyclerView favoritesRv;
     RecyclerView visitedRv;
     Activity activity = this;
+    // Designates what to send as the intent name
     public static final String EXTRA_QUERY = "team2.cs246.nationalparkapp.QUERY";
 
     @Override
@@ -33,6 +38,12 @@ public class DashboardActivity extends AppCompatActivity {
         new Thread(new DashboardPresenter(this)).start();
     }
 
+    /**
+     * Allows a call to SearchParksActivity to filter
+     * by full park name or State.
+     * @param menu The menu on Dashboard that allows for search
+     * @return boolean of status of creating options menu and calls
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -40,6 +51,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // We want to only query when a user submits instead of letter by letter
+            // This was done for performance reasons and to not call the API too heavily
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Intent intent = new Intent(activity, SearchParksActivity.class);

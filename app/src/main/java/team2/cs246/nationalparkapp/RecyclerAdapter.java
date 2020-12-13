@@ -79,6 +79,7 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.ParkV
                     intent.putExtra("DESC", selectedPark.getDescription());
                     intent.putExtra("LATLONG", selectedPark.getLatLong());
                     intent.putExtra("PARKDESIGNATION", selectedPark.getDesignation());
+                    intent.putExtra("PARKCODE", selectedPark.getParkCode());
                     //intent.putExtra("HEADER", selectedPark.getImages());
                     mContext.startActivity(intent);
                 }
