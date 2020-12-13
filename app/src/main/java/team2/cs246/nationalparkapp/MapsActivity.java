@@ -13,9 +13,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    // Private variables for maps
     private GoogleMap mMap;
     private double latDouble;
     private double longDouble;
+    private String locName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         latDouble = getIntent().getDoubleExtra("LAT", 0);
         longDouble = getIntent().getDoubleExtra("LONG", 0);
+        locName = getIntent().getStringExtra("NAME");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -42,9 +45,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng mtRushmore = new LatLng(latDouble, longDouble);
-        mMap.addMarker(new MarkerOptions().position(mtRushmore).title("Mount Rushmore"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(mtRushmore));
+        // Pass lac/long location and park name for marker
+        LatLng location = new LatLng(latDouble, longDouble);
+        mMap.addMarker(new MarkerOptions().position(location).title(locName));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 }

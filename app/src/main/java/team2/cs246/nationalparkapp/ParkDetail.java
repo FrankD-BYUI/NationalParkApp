@@ -44,10 +44,11 @@ public class ParkDetail extends AppCompatActivity {
         String parkDesignationText = getIntent().getStringExtra("PARKDESIGNATION");
         String parkCodeText = getIntent().getStringExtra("PARKCODE");
 
-
+        // Takes the API lat/long string and separates the coordinates to separate strings
         String latText = latLongText.length() > 0 ? latLongText.substring(latLongText.indexOf(":")+1,latLongText.indexOf(",")) : "0.0";
         String longText = latLongText.length() > 0 ? latLongText.substring(latLongText.lastIndexOf(":")+1) : "0.0";
 
+        // Converts the lat/long strings to double variables
         double latDouble = Double.parseDouble(latText);
         double longDouble = Double.parseDouble(longText);
 
@@ -63,10 +64,11 @@ public class ParkDetail extends AppCompatActivity {
         description.setText(descriptionText);
         parkDesignation.setText(parkDesignationText);
 
+        // Calls the goToMap class and passes the variables
         mapLookup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToMap(latDouble, longDouble);
+                goToMap(latDouble, longDouble, parkTitleText);
             }
         });
 
@@ -79,10 +81,12 @@ public class ParkDetail extends AppCompatActivity {
         });
     }
 
-    public void goToMap(double latDouble, double longDouble){
+    // Adds intents to pass to the maps activity for displaying the maps correctly
+    public void goToMap(double latDouble, double longDouble, String parkTitle){
         Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("LAT", latDouble);
         intent.putExtra("LONG", longDouble);
+        intent.putExtra("NAME", parkTitle);
         startActivity(intent);
     }
 

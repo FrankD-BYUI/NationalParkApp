@@ -61,6 +61,7 @@
         android:id="@+id/parkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
@@ -78,8 +79,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/park_title"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/parkName"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -109,14 +112,14 @@
         android:id="@+id/favorite"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
         android:clickable="true"
         android:contentDescription="@string/fab_content_description"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19"
-        app:srcCompat="@drawable/ic_star"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:srcCompat="@android:drawable/btn_star"
         tools:visibility="visible" />
 
     <TextView
@@ -129,6 +132,7 @@
         android:layout_marginBottom="16dp"
         android:ellipsize="end"
         android:fadingEdge="vertical"
+        android:fontFamily="@font/adamina"
         android:text="@string/park_description"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/mapLookup"
